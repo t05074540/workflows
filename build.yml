@@ -1,1 +1,25 @@
+name: Build and Run C++ Program
+
+on:
+  push:
+    branches: [ main ] # 在 main 分支提交代碼時觸發
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/checkout@v2
+
+    - name: Set up C++ compiler
+      uses: actions/setup-cpp@v2
+      with:
+        compiler: gcc
+
+    - name: Build
+      run: |
+        g++ -o my_program main.cpp -lmodbus
+
+    - name: Execute
+      run: ./my_program
 
